@@ -32,3 +32,10 @@
 
 - Deleted manual sql querying and switched over to using hibernate auto DDL
 - SpringData JPA setup
+
+# 2025-06-19
+
+- Learned how to use Spring Data JPA and Hibernate API for Create, Read, Update, and delete
+functionality
+- Was able to implement HQL queries for more complex database methods
+- Began working on a subproject with Jackson and SpringWeb

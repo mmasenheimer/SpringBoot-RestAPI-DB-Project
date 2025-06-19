@@ -1,8 +1,8 @@
-package mmasenheimerdbex.dao.impl;
+package mmasenheimerdbex.repositories;
 
 import database.mmasenheimerdbex.database.DatabaseApplication;
-import database.mmasenheimerdbex.database.dao.impl.AuthorDaoImpl;
 import database.mmasenheimerdbex.database.domain.Author;
+import database.mmasenheimerdbex.database.repositories.AuthorRepository;
 import mmasenheimerdbex.TestDataUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,13 +25,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 // Resetting the context after each test, for a clean slate each time ran
 
-public class AuthorDaoImplIntegrationTests {
+public class AuthorRepositoryIntegrationTests {
 
-    private AuthorDaoImpl underTest;
+    private AuthorRepository underTest;
     // Declaring a field to hold the AuthorDaoImpl bean under test
 
     @Autowired
-    public AuthorDaoImplIntegrationTests(AuthorDaoImpl underTest) {
+    public AuthorRepositoryIntegrationTests(AuthorRepository underTest) {
         this.underTest = underTest;
     }
     // Spring injects the AuthorDaoImpl bean into the test class
@@ -42,9 +42,9 @@ public class AuthorDaoImplIntegrationTests {
         Author author = TestDataUtil.createTestAuthorA();
         // Creates an Author object using the TestDataUtil method (Author builder)
 
-        underTest.create(author);
+        underTest.save(author);
 
-        Optional<Author> result = underTest.findOne(author.getId());
+        Optional<Author> result = underTest.findById(author.getId());
         assertThat(result).isPresent();
         // Checking to see if it's not an optional entity, it does exist
 
@@ -59,15 +59,15 @@ public class AuthorDaoImplIntegrationTests {
         // DataUtil class
 
         Author authorA = TestDataUtil.createTestAuthorA();
-        underTest.create(authorA);
+        underTest.save(authorA);
 
         Author authorB = TestDataUtil.createTestAuthorB();
-        underTest.create(authorB);
+        underTest.save(authorB);
 
         Author authorC = TestDataUtil.createTestAuthorC();
-        underTest.create(authorC);
+        underTest.save(authorC);
 
-        List<Author> result = underTest.find();
+        Iterable<Author> result = underTest.findAll();
         // Find() will retrieve all of the authors in the database and put them in a list
 
 
@@ -81,14 +81,14 @@ public class AuthorDaoImplIntegrationTests {
     @Test
     public void testThatAuthorCanBeUpdated() {
         Author authorA = TestDataUtil.createTestAuthorA();
-        underTest.create(authorA);
+        underTest.save(authorA);
         // Create a new Author object and save them in the database
 
         authorA.setName("UPDATED");
-        underTest.update(authorA.getId(), authorA);
+        underTest.save(authorA);
         // Calls the update method in author DaoImpl updating the author
 
-        Optional<Author> result = underTest.findOne(authorA.getId());
+        Optional<Author> result = underTest.findById(authorA.getId());
         // Retrieving the author back from the database after the update
 
         assertThat(result).isPresent();
@@ -103,13 +103,43 @@ public class AuthorDaoImplIntegrationTests {
         // Testing if an author was successfully deleted from the database
 
         Author authorA = TestDataUtil.createTestAuthorA();
-        underTest.create(authorA);
-        underTest.delete(authorA.getId());
+        underTest.save(authorA);
+        underTest.deleteById(authorA.getId());
         // Create a new author and delete them from the db
 
-        Optional<Author> result = underTest.findOne(authorA.getId());
+        Optional<Author> result = underTest.findById(authorA.getId());
         assertThat(result).isEmpty();
         // Trying to find the author will return a null and pass the test if successfully deleted
+
+    }
+
+    @Test
+    public void testThatGetAuthorsWithAgeLessThan() {
+        Author testAuthorA = TestDataUtil.createTestAuthorA();
+        underTest.save(testAuthorA);
+        Author testAuthorB = TestDataUtil.createTestAuthorB();
+        underTest.save(testAuthorB);
+        Author testAuthorC = TestDataUtil.createTestAuthorC();
+        underTest.save(testAuthorC);
+        // Creating three authors to put into the database
+
+        Iterable<Author> result = underTest.ageLessThan(50);
+
+        assertThat(result).containsExactly(testAuthorB, testAuthorC);
+    }
+
+    @Test
+    public void testThatGetAuthorsWithAgeGreaterThan() {
+        Author testAuthorA = TestDataUtil.createTestAuthorA();
+        underTest.save(testAuthorA);
+        Author testAuthorB = TestDataUtil.createTestAuthorB();
+        underTest.save(testAuthorB);
+        Author testAuthorC = TestDataUtil.createTestAuthorC();
+        underTest.save(testAuthorC);
+        // Creating three authors to put into the database
+
+        Iterable<Author> result = underTest.findAuthorsWithAgeGreaterThan(50);
+        assertThat(result).containsExactly(testAuthorA);
 
     }
 
