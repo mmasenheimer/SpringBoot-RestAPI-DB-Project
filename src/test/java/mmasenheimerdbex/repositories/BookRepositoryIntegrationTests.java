@@ -89,6 +89,7 @@ public class BookRepositoryIntegrationTests {
         List<Book> books = (List<Book>) result;
         // Retrieve all books from the database
 
+
         assertThat(books)
                 .hasSize(3)
                 .containsExactly(bookA, bookB, bookC);
