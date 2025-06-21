@@ -2,6 +2,7 @@ package database.mmasenheimerdbex.database.controllers;
 
 
 import database.mmasenheimerdbex.database.domain.Author;
+import database.mmasenheimerdbex.database.domain.dto.AuthorDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class AuthorController {
 
     @PostMapping(path = "/authors")
 
-    public Author createAuthor(@RequestBody Author author) {
+    public AuthorDto createAuthor(@RequestBody AuthorDto author) {
         // Telling spring to at the http request post for Author object represented as JSON
 
         return authorService.createAuthor(author);
