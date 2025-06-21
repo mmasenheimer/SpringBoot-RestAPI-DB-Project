@@ -1,7 +1,7 @@
 package mmasenheimerdbex.repositories;
 
 import database.mmasenheimerdbex.database.DatabaseApplication;
-import database.mmasenheimerdbex.database.domain.Author;
+import database.mmasenheimerdbex.database.domain.AuthorEntity;
 import database.mmasenheimerdbex.database.domain.Book;
 import database.mmasenheimerdbex.database.repositories.AuthorRepository;
 import database.mmasenheimerdbex.database.repositories.BookRepository;
@@ -44,7 +44,7 @@ public class BookRepositoryIntegrationTests {
 
     @Test
     public void testThatBookCanBeCreatedAndRecalled() {
-        Author author = TestDataUtil.createTestAuthorA();
+        AuthorEntity author = TestDataUtil.createTestAuthorA();
         author = authorRepository.save(author);
 
         Book book = TestDataUtil.createTestBookA(author);
@@ -69,7 +69,7 @@ public class BookRepositoryIntegrationTests {
         // Check to see whether multiple Book records can be created  and then retrieved correctly
 
 
-        Author author = TestDataUtil.createTestAuthorA();
+        AuthorEntity author = TestDataUtil.createTestAuthorA();
         author = authorRepository.save(author);
         // Creates a test author and inserts them into the database
 
@@ -115,7 +115,7 @@ public class BookRepositoryIntegrationTests {
     public void testThatBookCanBeUpdated() {
         // This tests if a books information can be updated in the database
 
-        Author author = TestDataUtil.createTestAuthorA();
+        AuthorEntity author = TestDataUtil.createTestAuthorA();
         author = authorRepository.save(author);
         // Create an author and add it to the database
 
@@ -142,7 +142,7 @@ public class BookRepositoryIntegrationTests {
 
     @Test
     public void testThatBookCanBeDeleted() {
-        Author author = TestDataUtil.createTestAuthorA();
+        AuthorEntity author = TestDataUtil.createTestAuthorA();
         author = authorRepository.save(author);
         // Create author for the book
 

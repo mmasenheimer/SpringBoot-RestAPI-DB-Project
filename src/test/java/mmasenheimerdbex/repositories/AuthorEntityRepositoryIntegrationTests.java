@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,13 +24,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 // Resetting the context after each test, for a clean slate each time ran
 
-public class AuthorRepositoryIntegrationTests {
+public class AuthorEntityRepositoryIntegrationTests {
 
     private AuthorRepository underTest;
     // Declaring a field to hold the AuthorDaoImpl bean under test
 
     @Autowired
-    public AuthorRepositoryIntegrationTests(AuthorRepository underTest) {
+    public AuthorEntityRepositoryIntegrationTests(AuthorRepository underTest) {
         this.underTest = underTest;
     }
     // Spring injects the AuthorDaoImpl bean into the test class
