@@ -39,3 +39,7 @@
 functionality
 - Was able to implement HQL queries for more complex database methods
 - Began working on a subproject with Jackson and SpringWeb
+
+# 2025-06-20
+
+- Curated a REST API design for the project
