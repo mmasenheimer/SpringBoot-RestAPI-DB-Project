@@ -71,6 +71,7 @@ public class BookRepositoryIntegrationTests {
 
         AuthorEntity author = TestDataUtil.createTestAuthorA();
         author = authorRepository.save(author);
+
         // Creates a test author and inserts them into the database
 
         Book bookA = TestDataUtil.createTestBookA(author);
