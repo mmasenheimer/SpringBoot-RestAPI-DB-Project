@@ -1,4 +1,4 @@
-package database.mmasenheimerdbex.database.domain;
+package database.mmasenheimerdbex.database.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "books")
 
-public class Book {
+public class BookEntity {
 
     @Id
     private String isbn;

@@ -1,8 +1,8 @@
 package mmasenheimerdbex.repositories;
 
 import database.mmasenheimerdbex.database.DatabaseApplication;
-import database.mmasenheimerdbex.database.domain.AuthorEntity;
-import database.mmasenheimerdbex.database.domain.Book;
+import database.mmasenheimerdbex.database.domain.entities.AuthorEntity;
+import database.mmasenheimerdbex.database.domain.entities.BookEntity;
 import database.mmasenheimerdbex.database.repositories.AuthorRepository;
 import database.mmasenheimerdbex.database.repositories.BookRepository;
 import mmasenheimerdbex.TestDataUtil;
@@ -27,7 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 // Clean the context after running each individual test case
 
-public class BookRepositoryIntegrationTests {
+public class BookEntityRepositoryIntegrationTests {
 
 
     private final BookRepository underTest;
@@ -36,7 +36,7 @@ public class BookRepositoryIntegrationTests {
 
     @Autowired
     // Resolve and inject the required dependencies into the class
-    public BookRepositoryIntegrationTests(BookRepository underTest, AuthorRepository authorRepository) {
+    public BookEntityRepositoryIntegrationTests(BookRepository underTest, AuthorRepository authorRepository) {
         this.underTest = underTest;
         this.authorRepository = authorRepository;
     }
@@ -47,18 +47,18 @@ public class BookRepositoryIntegrationTests {
         AuthorEntity author = TestDataUtil.createTestAuthorA();
         author = authorRepository.save(author);
 
-        Book book = TestDataUtil.createTestBookA(author);
+        BookEntity bookEntity = TestDataUtil.createTestBookA(author);
         // Creates a Book object using the TestDataUtil method (book builder)
 
-        underTest.save(book);
+        underTest.save(bookEntity);
         // Call the  DAO method to insert the Book into the database
 
-        Optional<Book> result = underTest.findById(book.getIsbn());
+        Optional<BookEntity> result = underTest.findById(bookEntity.getIsbn());
         // Queries the database for the book by ISBN
 
         assertThat(result).isPresent();
 
-        assertThat(result.get()).isEqualTo(book);
+        assertThat(result.get()).isEqualTo(bookEntity);
 
         // Just checking to see if the created and inserted book is equal to the one
         // Extracted from the database
@@ -74,37 +74,37 @@ public class BookRepositoryIntegrationTests {
 
         // Creates a test author and inserts them into the database
 
-        Book bookA = TestDataUtil.createTestBookA(author);
-        underTest.save(bookA);
+        BookEntity bookEntityA = TestDataUtil.createTestBookA(author);
+        underTest.save(bookEntityA);
 
-        Book bookB = TestDataUtil.createTestBookB(author);
-        underTest.save(bookB);
+        BookEntity bookEntityB = TestDataUtil.createTestBookB(author);
+        underTest.save(bookEntityB);
 
-        Book bookC = TestDataUtil.createTestBookC(author);
-        underTest.save(bookC);
+        BookEntity bookEntityC = TestDataUtil.createTestBookC(author);
+        underTest.save(bookEntityC);
 
         // Creates Books A, B, C and assigns it to the saved author ID and then saves them
 
-        Iterable<Book> result = underTest.findAll();
-        List<Book> books = (List<Book>) result;
+        Iterable<BookEntity> result = underTest.findAll();
+        List<BookEntity> bookEntities = (List<BookEntity>) result;
         // Retrieve all books from the database
 
 
-        assertThat(books)
+        assertThat(bookEntities)
                 .hasSize(3)
-                .containsExactly(bookA, bookB, bookC);
+                .containsExactly(bookEntityA, bookEntityB, bookEntityC);
         // Assert that exactly 3 books were retrieved, and he lost contains the exact 3 books inserted
 
-        assertThat(books)
-                .extracting(Book::getIsbn)
+        assertThat(bookEntities)
+                .extracting(BookEntity::getIsbn)
                 .containsExactlyInAnyOrder(
                         "978-1-2345-6789-0",
                         "978-1-2345-6789-1",
                         "978-1-2345-6789-2"
                 );
 
-        assertThat(books)
-                .extracting(Book::getTitle)
+        assertThat(bookEntities)
+                .extracting(BookEntity::getTitle)
                 .containsExactlyInAnyOrder(
                         "The Shadow in the Attic",
                         "Beyond the Horizon",
@@ -121,22 +121,22 @@ public class BookRepositoryIntegrationTests {
         author = authorRepository.save(author);
         // Create an author and add it to the database
 
-        Book bookA = TestDataUtil.createTestBookA(author);
-        underTest.save(bookA);
+        BookEntity bookEntityA = TestDataUtil.createTestBookA(author);
+        underTest.save(bookEntityA);
         // Create a book and add it to the database
 
-        bookA.setTitle("UPDATED");
-        underTest.save(bookA);
+        bookEntityA.setTitle("UPDATED");
+        underTest.save(bookEntityA);
         // Call the update method on the book
 
-        Optional<Book> result = underTest.findById(bookA.getIsbn());
+        Optional<BookEntity> result = underTest.findById(bookEntityA.getIsbn());
         // Retrieve the book
 
         assertThat(result).isPresent();
-        assertThat(result.get()).isEqualTo(bookA);
+        assertThat(result.get()).isEqualTo(bookEntityA);
         assertThat(result).isPresent();
         assertThat(result.get().getTitle()).isEqualTo("UPDATED");
-        assertThat(result.get().getIsbn()).isEqualTo(bookA.getIsbn());
+        assertThat(result.get().getIsbn()).isEqualTo(bookEntityA.getIsbn());
         assertThat(result.get().getAuthor().getName()).isEqualTo("Abigail Rose");
         // Make sure the book is present and the updated version checks out
 
@@ -148,13 +148,13 @@ public class BookRepositoryIntegrationTests {
         author = authorRepository.save(author);
         // Create author for the book
 
-        Book bookA = TestDataUtil.createTestBookA(author);
+        BookEntity bookEntityA = TestDataUtil.createTestBookA(author);
 
-        underTest.save(bookA);
+        underTest.save(bookEntityA);
 
         // Create the book and put it into the db
-        underTest.deleteById(bookA.getIsbn());
-        Optional<Book> result = underTest.findById(bookA.getIsbn());
+        underTest.deleteById(bookEntityA.getIsbn());
+        Optional<BookEntity> result = underTest.findById(bookEntityA.getIsbn());
         // Delete the book and try to query it out of the database
 
         assertThat(result).isEmpty();

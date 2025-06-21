@@ -1,4 +1,4 @@
-package database.mmasenheimerdbex.database.domain;
+package database.mmasenheimerdbex.database.domain.entities;
 
 
 import jakarta.persistence.*;

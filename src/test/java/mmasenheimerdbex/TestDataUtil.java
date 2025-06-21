@@ -1,7 +1,7 @@
 package mmasenheimerdbex;
 
 import database.mmasenheimerdbex.database.domain.Author;
-import database.mmasenheimerdbex.database.domain.Book;
+import database.mmasenheimerdbex.database.domain.entities.BookEntity;
 
 public final class TestDataUtil {
     // This whole class is full of methods for creating book or author objects
@@ -34,8 +34,8 @@ public final class TestDataUtil {
     }
 
 
-    public static Book createTestBookA(final Author author) {
-        return Book.builder()
+    public static BookEntity createTestBookA(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-0")
                 .title("The Shadow in the Attic")
                 .author(author)
@@ -43,8 +43,8 @@ public final class TestDataUtil {
 
     }
 
-    public static Book createTestBookB(final Author author) {
-        return Book.builder()
+    public static BookEntity createTestBookB(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-1")
                 .title("Beyond the Horizon")
                 .author(author)
@@ -52,8 +52,8 @@ public final class TestDataUtil {
 
     }
 
-    public static Book createTestBookC(final Author author) {
-        return Book.builder()
+    public static BookEntity createTestBookC(final Author author) {
+        return BookEntity.builder()
                 .isbn("978-1-2345-6789-2")
                 .title("The Last Ember")
                 .author(author)
