@@ -1,8 +1,8 @@
 package services;
 
-import database.mmasenheimerdbex.database.domain.Author;
+import database.mmasenheimerdbex.database.domain.entities.AuthorEntity;
 
 public interface AuthorService {
-    Author createAuthor(Author author);
+    AuthorEntity createAuthor(AuthorEntity author);
 
 }
