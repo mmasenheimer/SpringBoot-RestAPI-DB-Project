@@ -6,6 +6,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import services.AuthorService;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
@@ -22,6 +27,21 @@ public class AuthorServiceImpl implements AuthorService {
         // Pass through for service layer
     }
 
+    @Override
+    public List<AuthorEntity> findAll() {
+        // Making a list of AuthorEntities using spliterator
+        return StreamSupport.stream(authorRepository
+                        .findAll()
+                        .spliterator(),
+                        false)
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public Optional<AuthorEntity> findOne(Long id) {
+        return authorRepository.findById(id);
+    }
 
 
 }

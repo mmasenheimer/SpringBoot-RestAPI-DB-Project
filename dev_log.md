@@ -48,4 +48,10 @@ functionality
 
 - Created an Author create endpoint and integration test for it
 - Created a Book create endpoint and integration test for it
-- 
+- Created Author List endpoint and tests for it
+- Created Book List endpoint and tests for it
+
+# 2025-06-22
+
+- Implemented readOne find one endpoint for the book with tests
+- Implemented readOne find one endpoint for the author with tests
