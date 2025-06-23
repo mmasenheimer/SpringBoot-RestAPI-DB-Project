@@ -1,6 +1,6 @@
 package mmasenheimerdbex.repositories;
 
-import database.mmasenheimerdbex.database.DatabaseApplication;
+import database.mmasenheimerdbex.database.BooksApiApplication;
 import database.mmasenheimerdbex.database.domain.entities.AuthorEntity;
 import database.mmasenheimerdbex.database.domain.entities.BookEntity;
 import database.mmasenheimerdbex.database.repositories.AuthorRepository;
@@ -18,7 +18,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = DatabaseApplication.class)
+@SpringBootTest(classes = BooksApiApplication.class)
 // Load the full application context for testing at the DatabaseApplication root
 
 @ExtendWith(SpringExtension.class)

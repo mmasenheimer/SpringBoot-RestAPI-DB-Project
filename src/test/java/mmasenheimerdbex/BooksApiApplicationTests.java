@@ -1,12 +1,12 @@
 package mmasenheimerdbex;
 
-import database.mmasenheimerdbex.database.DatabaseApplication;
+import database.mmasenheimerdbex.database.BooksApiApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = DatabaseApplication.class)
+@SpringBootTest(classes = BooksApiApplication.class)
 // Start the full application context for testing
-class DatabaseApplicationTests {
+class BooksApiApplicationTests {
 
     @Test
     void contextLoads() {

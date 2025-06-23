@@ -43,3 +43,9 @@ functionality
 # 2025-06-20
 
 - Curated a REST API design for the project
+
+# 2025-06-22
+
+- Created an Author create endpoint and integration test for it
+- Created a Book create endpoint and integration test for it
+- 
