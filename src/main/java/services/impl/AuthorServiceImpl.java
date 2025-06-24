@@ -2,7 +2,7 @@ package services.impl;
 
 import database.mmasenheimerdbex.database.domain.entities.AuthorEntity;
 import database.mmasenheimerdbex.database.repositories.AuthorRepository;
-import org.modelmapper.ModelMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import services.AuthorService;
 
@@ -22,7 +22,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public AuthorEntity createAuthor(AuthorEntity authorEntity) {
+    public AuthorEntity save(AuthorEntity authorEntity) {
         return authorRepository.save(authorEntity);
         // Pass through for service layer
     }
@@ -37,11 +37,15 @@ public class AuthorServiceImpl implements AuthorService {
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public Optional<AuthorEntity> findOne(Long id) {
         return authorRepository.findById(id);
     }
 
+    @Override
+
+    public boolean isExists(Long id) {
+        return authorRepository.existsById(id);
+    }
 
 }

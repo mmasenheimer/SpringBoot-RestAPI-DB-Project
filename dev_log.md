@@ -55,3 +55,8 @@ functionality
 
 - Implemented readOne find one endpoint for the book with tests
 - Implemented readOne find one endpoint for the author with tests
+
+# 2025-06-22
+
+- Implemented Author full update endpoint with tests
+- Implemented Book full update with tests
