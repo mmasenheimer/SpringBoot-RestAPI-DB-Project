@@ -187,6 +187,7 @@ public class AuthorControllerIntegrationTests {
         AuthorDto updateDto = new AuthorDto();
         updateDto.setId(savedAuthor.getId());
         updateDto.setVersion(savedAuthor.getVersion());
+        // this test does not work right now
         updateDto.setName("Updated Name"); // Your update data
         updateDto.setAge(85); // Your update data
 
