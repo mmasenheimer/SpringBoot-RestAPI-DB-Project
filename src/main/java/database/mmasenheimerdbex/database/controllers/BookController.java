@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import services.BookService;
 
-import java.awt.print.Book;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,15 +25,30 @@ public class BookController {
     }
 
     @PutMapping("/books/{isbn}")
-    public ResponseEntity<BookDto> createBook(
+    public ResponseEntity<BookDto> createUpdateBook(
             @PathVariable("isbn") String isbn,
             @RequestBody BookDto bookDto) {
+
         BookEntity bookEntity = bookMapper.mapFrom(bookDto);
-        BookEntity savedBook = bookService.createBook(isbn, bookEntity);
+        // Take the book dto and convert it into an entity
+
+        boolean bookExists = bookService.isExists(isbn);
+        // Check if the book exists in the database via isbn
+
+        BookEntity savedBook = bookService.createUpdateBook(isbn, bookEntity);
+
         BookDto savedBookDto = bookMapper.mapTo(savedBook);
+        // Map from entity back to dto
 
-        return new  ResponseEntity<>(savedBookDto, HttpStatus.CREATED);
+        if(bookExists) {
+            return new  ResponseEntity<>(savedBookDto, HttpStatus.OK);
+            // Update as the book already exists in the db
 
+        } else {
+            return new  ResponseEntity<>(savedBookDto, HttpStatus.CREATED);
+            // Create as the book did not exist in the db
+
+        }
     }
 
     @GetMapping(path = "/books")
