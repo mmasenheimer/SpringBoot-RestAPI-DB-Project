@@ -60,3 +60,5 @@ functionality
 
 - Implemented Author full update endpoint with tests
 - Implemented Book full update with tests
+
+# 2025-06-22
