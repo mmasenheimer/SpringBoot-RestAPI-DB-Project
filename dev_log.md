@@ -51,17 +51,19 @@ functionality
 - Created Author List endpoint and tests for it
 - Created Book List endpoint and tests for it
 
-# 2025-06-22
+# 2025-06-23
 
 - Implemented readOne find one endpoint for the book with tests
 - Implemented readOne find one endpoint for the author with tests
 
-# 2025-06-22
+# 2025-06-24
 
 - Implemented Author full update endpoint with tests
 - Implemented Book full update with tests
 
-# 2025-06-22
+# 2025-06-25
 
 - Implemented book partial update endpoint with tests
 - Implemented author partial update endpoint with tests
+
+# 2025-06-26
