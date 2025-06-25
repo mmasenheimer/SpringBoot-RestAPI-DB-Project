@@ -1,5 +1,6 @@
 package services;
 
+import database.mmasenheimerdbex.database.domain.dto.AuthorDto;
 import database.mmasenheimerdbex.database.domain.entities.AuthorEntity;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface AuthorService {
     Optional<AuthorEntity> findOne(Long id);
 
     boolean isExists(Long id);
+
+    AuthorEntity partialUpdate(Long id, AuthorEntity authorAuthorEntity);
 
 }

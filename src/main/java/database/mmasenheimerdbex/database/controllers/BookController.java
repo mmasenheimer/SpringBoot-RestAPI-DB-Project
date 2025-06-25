@@ -24,7 +24,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PutMapping("/books/{isbn}")
+    @PutMapping(path ="/books/{isbn}")
     public ResponseEntity<BookDto> createUpdateBook(
             @PathVariable("isbn") String isbn,
             @RequestBody BookDto bookDto) {
@@ -49,6 +49,25 @@ public class BookController {
             // Create as the book did not exist in the db
 
         }
+    }
+
+    @PatchMapping(path = "/books/{isbn}")
+    public ResponseEntity<BookDto> partialUpdateBook(
+            @PathVariable("isbn") String isbn,
+            @RequestBody BookDto bookDto
+    ) {
+        boolean bookExists = bookService.isExists(isbn);
+        if(!bookService.isExists(isbn)) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        BookEntity bookEntity = bookMapper.mapFrom(bookDto);
+        BookEntity updatedBookEntity = bookService.partialUpdate(isbn, bookEntity);
+
+        return new ResponseEntity<>(
+            bookMapper.mapTo(updatedBookEntity),
+            HttpStatus.OK);
+
     }
 
     @GetMapping(path = "/books")
