@@ -182,6 +182,7 @@ public class AuthorControllerIntegrationTests {
     public void testThatFullUpdateAuthorReturns200WhenAuthorExists() throws Exception {
         AuthorEntity testAuthorEntityA = TestDataUtil.createTestAuthorEntityA();
         AuthorEntity savedAuthor = authorService.save(testAuthorEntityA);
+        // cross contamination tests
 
         // Convert saved entity to DTO to preserve version
         AuthorDto updateDto = new AuthorDto();
