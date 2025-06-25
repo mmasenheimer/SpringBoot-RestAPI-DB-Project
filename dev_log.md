@@ -62,3 +62,6 @@ functionality
 - Implemented Book full update with tests
 
 # 2025-06-22
+
+- Implemented book partial update endpoint
+- Implemented author partial update endpoint
