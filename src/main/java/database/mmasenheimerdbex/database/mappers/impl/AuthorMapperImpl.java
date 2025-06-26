@@ -7,11 +7,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthorMapper implements Mapper<AuthorEntity, AuthorDto> {
+public class AuthorMapperImpl implements Mapper<AuthorEntity, AuthorDto> {
 
     private ModelMapper modelMapper;
 
-    public AuthorMapper(ModelMapper modelMapper) {
+    public AuthorMapperImpl(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
         // Accessing the model mapper via constructor injection
     }

@@ -7,7 +7,7 @@ import database.mmasenheimerdbex.database.domain.entities.AuthorEntity;
 import database.mmasenheimerdbex.database.domain.entities.BookEntity;
 
 public final class TestDataUtil {
-    // This whole class is full of methods for creating book or author objects
+    // This whole class is full author or book object creations for testing
 
     private TestDataUtil() {
 

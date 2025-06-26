@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import services.BookService;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest(classes = BooksApiApplication.class)
 @ExtendWith(SpringExtension.class)
@@ -112,7 +113,6 @@ public class BookControllerIntegrationTests {
         );
     }
 
-
     @Test
     public void testThatListBooksReturnsHttpStatus200Ok() throws Exception {
         mockMvc.perform(
@@ -131,10 +131,13 @@ public class BookControllerIntegrationTests {
         mockMvc.perform(
                 MockMvcRequestBuilders.get("/books")
                         .contentType(MediaType.APPLICATION_JSON)
+
+        )
+
+                .andExpect(
+                MockMvcResultMatchers.jsonPath("$.content[0].isbn").value("978-1-2345-6789-0")
         ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[0].isbn").value("978-1-2345-6789-0")
-        ).andExpect(
-                MockMvcResultMatchers.jsonPath("$[0].title").value("The Shadow in the Attic")
+                MockMvcResultMatchers.jsonPath("$.content[0].title").value("The Shadow in the Attic")
         );
     }
 
@@ -203,4 +206,25 @@ public class BookControllerIntegrationTests {
                 MockMvcResultMatchers.jsonPath("$.title").value("UPDATED")
         );
     }
+
+    @Test
+    public void testThatDeleteNonExistingBookReturnsHttpStatus404NoContent() throws Exception {
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete("/books/990987")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isNoContent());
+
+    }
+    @Test
+    public void testThatDeleteExistingBookReturnsHttpStatus404NoContent() throws Exception {
+        BookEntity testBookEntityA = TestDataUtil.createTestBookEntityA(null);
+        bookService.createUpdateBook(testBookEntityA.getIsbn(), testBookEntityA);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete("/books/" + testBookEntityA.getIsbn())
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(MockMvcResultMatchers.status().isNoContent());
+
+    }
+
 }
