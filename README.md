@@ -11,8 +11,8 @@ Technologies
 - ModelMapper for DTO mapping
 - Lombok
 
-This project really helped me understand REST API archetecture, such as the presentation layer, business logic layer, and data access layer. 
-I also learned important SWE techniques such as dependency injection, beans, and integration/repository tests.
+This project really helped me understand REST API archetecture, such as the presentation layer, business logic layer, and data access layer. I learned how JSON and API requests work.
+I also learned important SWE techniques such as dependency injection, beans, integration/repository tests, modularity, etc.
 
 All code except for the AuthorController/BookController integration tests are commented for clarity. (Those tests are reasonably self-explanatory)
 
