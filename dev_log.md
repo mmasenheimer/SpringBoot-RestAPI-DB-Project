@@ -66,7 +66,4 @@ functionality
 - Implemented book partial update endpoint with tests
 - Implemented author partial update endpoint with tests
 - Implemented author/book delete endpoints with tests
-
-# 2025-06-25
-
--
+- Finished adding comments and integration tests, project is done
