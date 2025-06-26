@@ -1,6 +1,6 @@
 This is my first backend development project- a REST API for books and authors
 
-Technologies
+# Technologies
 - SpringBoot with Maven and Tomcat
 - PostgreSQL for databse
 - Spring JPA for object-db mapping
