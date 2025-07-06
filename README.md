@@ -9,7 +9,7 @@ This is my first backend development project- a REST API for books and authors
 - Hosted on AWS LightSail (taken down now because it's expensive)
 - Mockito and JUnit for testing as well as testing on in-memory H2 databse
 - ModelMapper for DTO mapping
-- Lombok
+- Lombok for rapid development
 
 This project really helped me understand REST API archetecture, such as the presentation layer, business logic layer, and data access layer. I learned how JSON and API requests work.
 I also learned important SWE techniques such as dependency injection, beans, integration/repository tests, modularity, etc.
